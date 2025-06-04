@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Botón Corazón con Frases y Música</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: #fff0f5;
+    }
+
+    .heart-button {
+      position: relative;
+      width: 100px;
+      height: 90px;
+      background-color: red;
+      transform: rotate(-45deg);
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .heart-button::before,
+    .heart-button::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart-button::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart-button::after {
+      left: 50px;
+      top: 0;
+    }
+
+    .heart-button:hover {
+      transform: scale(1.1) rotate(-45deg);
+    }
+
+    #phrase {
+      margin-top: 40px;
+      font-size: 24px;
+      color: #333;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón en forma de corazón -->
+  <div class="heart-button" onclick="showPhrase()"></div>
+
+  <!-- Frase actual -->
+  <div id="phrase">Haz clic en el corazón 💖</div>
+
+  <!-- Audio oculto -->
+  <audio id="backgroundMusic" src="Linda Muchachita [kw7otbTe_Ds].mp3"></audio>
+  <!-- Reemplaza "musica.mp3" con el nombre de tu archivo de audio -->
+
+  <script>
+    const phrases = [
+      "Hola amor, queria decirte...",
+      "Eres increíble tal y como eres.",
+      "Cada día contigo es especial.",
+      "Tu sonrisa ilumina mi mundo.",
+      "Eres mi persona favorita.",
+      "Gracias por dejarme ser tu novio.",
+      "Gracias por existir.",
+      "¡TE QUIERO MUCHO MI AMOR!"
+    ];
+
+    let index = 0;
+    let musicStarted = false;
+
+    function showPhrase() {
+      const phraseElement = document.getElementById("phrase");
+      const audio = document.getElementById("backgroundMusic");
+
+      phraseElement.textContent = phrases[index];
+      index = (index + 1) % phrases.length;
+
+      // Iniciar música solo la primera vez
+      if (!musicStarted) {
+        audio.play();
+        musicStarted = true;
+      }
+    }
+  </script>
+
+</body>
+</html>
